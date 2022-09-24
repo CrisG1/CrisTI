@@ -29,5 +29,39 @@ namespace Codigo
             combo.ValueMember = id;
             combo.DisplayMember = campo;
         }
+        public static void llenagrid(string consulta, DataGridView datagrid)
+        {
+            DataTable dt;
+            dt = Conexion.EjecutaSeleccion(consulta);
+            if (dt == null)
+            {
+                return;
+            }
+            datagrid.DataSource = dt;
+        }
+        public static void llenalistview(string consulta, ListView list)
+        {
+            DataTable dt;
+            dt = Conexion.EjecutaSeleccion(consulta);
+            int numcolumns = dt.Columns.Count;
+            if (dt == null)
+            {
+                return;
+            }
+            list.View = View.Details;
+            foreach (DataColumn itemColumn in dt.Columns)
+            {
+                list.Columns.Add(Convert.ToString(itemColumn));
+            }
+            foreach (DataRow row in dt.Rows)
+            {
+                ListViewItem itemlist = new ListViewItem(Convert.ToString(row[0]));
+                for (int i = 1; i < numcolumns; i++)
+                {
+                    itemlist.SubItems.Add(Convert.ToString(row[i]));
+                }
+                list.Items.Add(itemlist);
+            }
+        }
     }
 }

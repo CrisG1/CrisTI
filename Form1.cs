@@ -27,7 +27,9 @@ namespace Codigo
             int registrosafectados = 0;
             registrosafectados = Conexion.EjecutaConsulta(textBox1.Text);
             AccionesComunes.mensaje("Registros Afectados: " + registrosafectados);
-            AccionesComunes.llenarCombo(textBox1.Text, comboBox1, "id_Articulo", "Articulo");
+            AccionesComunes.llenarCombo(textBox1.Text, comboBox1, "id_Cliente", "Articulo");
+            AccionesComunes.llenagrid(textBox1.Text, dataGridView1);
+            AccionesComunes.llenalistview(textBox1.Text, listView1);
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
